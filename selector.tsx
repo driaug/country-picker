@@ -96,7 +96,7 @@ export const CountrySelector = React.forwardRef<
 
               <div
                 className={
-                  'max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded-md'
+                  'max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded'
                 }
               >
                 {COUNTRIES.filter(country => country.title.toLowerCase().startsWith(query.toLowerCase())).length ===
