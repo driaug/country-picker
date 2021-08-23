@@ -11,7 +11,7 @@ This project makes use of a few dependencies!
 After you have placed the component, types and list of countries in their desired location (and fixed the imports 😉).
 You will need to pass down a few props!
 ### Forwardref
-As you can see, this component makes use of a forwardref, we use this to close the element when someone clicks outside of the selector
+As you can see, this component makes use of a forwardref, we use this to close the element when someone clicks outside of the selector.
 Create a new ref for your selector like this 
 ```ts
 const myRef = React.createRef<HTMLDivElement>();
