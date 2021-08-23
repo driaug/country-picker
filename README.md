@@ -21,6 +21,7 @@ You will need two state variables
 - One to store if the selector is open or not
 - One for the selected value
 
+### Everything together
 ```tsx
 import { COUNTRIES } from './countries';
 import { CountrySelector } from './selector';
