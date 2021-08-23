@@ -1,4 +1,5 @@
-import {COUNTRIES, SelectMenuOption} from './countries.ts'
+import { COUNTRIES } from './countries';
+import { SelectMenuOption } from './types';
 
 export const CountrySelector = React.forwardRef<
   HTMLDivElement,
