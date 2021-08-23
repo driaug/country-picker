@@ -1,5 +1,5 @@
 # react-country-selector
-![An image of the selector](https://i.postimg.cc/KYwGPws3/image.png)
+![An image of the selector](https://i.postimg.cc/x8JyysGx/image.png)
 
 ## Requirements
 This project makes use of a few dependencies!
