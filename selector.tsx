@@ -1,5 +1,6 @@
-import { COUNTRIES } from './countries';
-import { SelectMenuOption } from './types';
+import {COUNTRIES, SelectMenuOption} from '@onboarded/shared';
+import {AnimatePresence, motion} from 'framer-motion';
+import React, {MutableRefObject, useEffect, useState} from 'react';
 
 export const CountrySelector = React.forwardRef<
   HTMLDivElement,
@@ -42,13 +43,11 @@ export const CountrySelector = React.forwardRef<
         >
           <span className="block truncate flex items-center">
             <img
-              alt={`${COUNTRIES.find(value => value.value === props.selectedValue.value)?.value}`}
-              src={`https://www.countryflags.io/${
-                COUNTRIES.find(value => value.value === props.selectedValue.value)?.value
-              }/flat/64.png`}
+              alt={`${props.selectedValue.value}`}
+              src={`https://www.countryflags.io/${props.selectedValue.value}/flat/64.png`}
               className={'inline mr-2 h-6'}
             />
-            {COUNTRIES.find(value => value.value === props.selectedValue.value)?.title}
+            {props.selectedValue.title}
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <svg
