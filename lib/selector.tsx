@@ -1,6 +1,7 @@
-import {COUNTRIES, SelectMenuOption} from '@onboarded/shared';
-import {AnimatePresence, motion} from 'framer-motion';
-import React, {MutableRefObject, useEffect, useState} from 'react';
+import { COUNTRIES } from './countries';
+import { SelectMenuOption } from './types';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { MutableRefObject, useEffect, useState } from 'react';
 
 export const CountrySelector = React.forwardRef<
   HTMLDivElement,
@@ -84,7 +85,7 @@ export const CountrySelector = React.forwardRef<
                   <input
                     type="search"
                     name="search"
-                    autoComplete={'none'}
+                    autoComplete={'off'}
                     className="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder={'Search a country'}
                     onChange={e => setQuery(e.target.value)}
