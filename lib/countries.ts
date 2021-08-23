@@ -838,7 +838,7 @@ export const COUNTRIES: SelectMenuOption[] = [
     value: 'GB',
   },
   {
-    title: 'United Status',
+    title: 'United States',
     value: 'US',
   },
   {
