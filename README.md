@@ -51,5 +51,7 @@ const myPage = () => {
 ### Why is this not installable with npm or yarn?
 I decided to create my own selector because I needed flexibility. While the installable components may offer you a selector, most likely you can not style it or decide which countries to show.
 
+By offering you all components you are able to make this selector your own. Prefer to use HeadlessUI over Framer Motion? No problem, you can easily refactor it to suit your needs. :)
+
 ### Can I add or remove countries?
 Yes! The menu is filled with all countries specified in `countries.ts`. If you add or remove options, they will be removed from the selector as well.
