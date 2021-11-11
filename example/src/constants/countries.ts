@@ -1,4 +1,4 @@
-import { SelectMenuOption } from '../types/types';
+import { SelectMenuOption } from '../types';
 
 export const COUNTRIES: SelectMenuOption[] = [
   {

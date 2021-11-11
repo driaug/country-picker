@@ -45,8 +45,8 @@ export const CountrySelector = React.forwardRef<
           <span className="block truncate flex items-center">
             <img
               alt={`${props.selectedValue.value}`}
-              src={`https://www.countryflags.io/${props.selectedValue.value}/flat/64.png`}
-              className={'inline mr-2 h-6'}
+              src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${props.selectedValue.value}.svg`}
+              className={'inline mr-2 h-4 rounded-sm'}
             />
             {props.selectedValue.title}
           </span>
@@ -121,8 +121,8 @@ export const CountrySelector = React.forwardRef<
                         >
                           <img
                             alt={`${value.value}`}
-                            src={`https://www.countryflags.io/${value.value}/flat/64.png`}
-                            className={'inline mr-2 h-6'}
+                            src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
+                            className={'inline mr-2 h-4 rounded-sm'}
                           />
 
                           <span className="font-normal truncate">{value.title}</span>
