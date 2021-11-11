@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { SelectMenuOption } from '../types/types';
+import { SelectMenuOption } from '../types/index';
 import {CountrySelector} from '../components/selector';
 import {COUNTRIES} from '../constants/countries';
 
