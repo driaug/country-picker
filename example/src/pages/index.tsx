@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {CountrySelector} from '../components/selector';
 import {COUNTRIES} from '../lib/countries';
+import {SelectMenuOption} from '../lib/types';
 
 export default function Home() {
   const myRef = React.createRef<HTMLDivElement>();
 
   const [isOpen, setIsOpen] = useState(false);
   // Default this to a country's code to preselect it
-  const [country, setCountry] = useState('BE');
+  const [country, setCountry] = useState<SelectMenuOption['value']>('BE');
 
   return (
     <div className={'w-screen h-screen flex flex-col justify-center items-center'}>
@@ -20,7 +21,7 @@ export default function Home() {
           ref={myRef}
           open={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
-          onChange={val => setCountry(val)}
+          onChange={setCountry}
           selectedValue={COUNTRIES.find(option => option.value === country)}
         />
       </div>

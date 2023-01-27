@@ -1,7 +1,7 @@
-import { COUNTRIES } from '../lib/countries';
-import { SelectMenuOption } from '../lib/types';
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { MutableRefObject, useEffect, useState } from 'react';
+import {COUNTRIES} from '../lib/countries';
+import {SelectMenuOption} from '../lib/types';
+import {AnimatePresence, motion} from 'framer-motion';
+import React, {MutableRefObject, useEffect, useState} from 'react';
 
 export const CountrySelector = React.forwardRef<
   HTMLDivElement,
@@ -9,7 +9,7 @@ export const CountrySelector = React.forwardRef<
     id: string;
     open: boolean;
     onToggle: () => void;
-    onChange: (value: typeof COUNTRIES[number]['value']) => void;
+    onChange: (value: SelectMenuOption['value']) => void;
     selectedValue: SelectMenuOption;
   }
 >((props, ref) => {
