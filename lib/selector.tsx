@@ -1,7 +1,7 @@
-import { COUNTRIES } from './countries';
-import { SelectMenuOption } from './types';
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { MutableRefObject, useEffect, useState } from 'react';
+import {COUNTRIES} from './countries';
+import {SelectMenuOption} from './types';
+import {AnimatePresence, motion} from 'framer-motion';
+import React, {MutableRefObject, useEffect, useState} from 'react';
 
 export const CountrySelector = React.forwardRef<
   HTMLDivElement,
