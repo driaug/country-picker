@@ -1,6 +1,4 @@
-import { SelectMenuOption } from '../types';
-
-export const COUNTRIES: SelectMenuOption[] = [
+export const COUNTRIES = [
   {
     title: 'Afghanistan',
     value: 'AF',
@@ -877,4 +875,4 @@ export const COUNTRIES: SelectMenuOption[] = [
     title: 'Zimbabwe',
     value: 'ZW',
   },
-];
+] as const;

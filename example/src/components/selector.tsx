@@ -1,5 +1,5 @@
-import { COUNTRIES } from '../constants/countries';
-import { SelectMenuOption } from '../types/index';
+import { COUNTRIES } from '../lib/countries';
+import { SelectMenuOption } from '../lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { MutableRefObject, useEffect, useState } from 'react';
 
@@ -9,14 +9,14 @@ export const CountrySelector = React.forwardRef<
     id: string;
     open: boolean;
     onToggle: () => void;
-    onChange: (value: any) => void;
+    onChange: (value: typeof COUNTRIES[number]['value']) => void;
     selectedValue: SelectMenuOption;
   }
 >((props, ref) => {
   useEffect(() => {
     const mutableRef = ref as MutableRefObject<HTMLDivElement | null>;
 
-    const handleClickOutside = (event: any) => {
+    const handleClickOutside = (event) => {
       if (mutableRef.current && !mutableRef.current.contains(event.target) && props.open) {
         props.onToggle();
         setQuery('');

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import { SelectMenuOption } from '../types/index';
 import {CountrySelector} from '../components/selector';
-import {COUNTRIES} from '../constants/countries';
+import {COUNTRIES} from '../lib/countries';
 
 export default function Home() {
   const myRef = React.createRef<HTMLDivElement>();
@@ -22,7 +21,7 @@ export default function Home() {
           open={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
           onChange={val => setCountry(val)}
-          selectedValue={COUNTRIES.find(option => option.value === country) as SelectMenuOption} 
+          selectedValue={COUNTRIES.find(option => option.value === country)}
         />
       </div>
       <footer className={'mt-auto pb-2'}>
