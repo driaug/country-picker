@@ -11,6 +11,7 @@ export const CountrySelector = React.forwardRef<
     onToggle: () => void;
     onChange: (value: any) => void;
     selectedValue: SelectMenuOption;
+    disableSelectButton?: boolean;
   }
 >((props, ref) => {
   useEffect(() => {
@@ -41,6 +42,9 @@ export const CountrySelector = React.forwardRef<
           aria-expanded="true"
           aria-labelledby="listbox-label"
           onClick={props.onToggle}
+          disabled={
+            props.disableSelectButton ? props.disableSelectButton : false
+          }
         >
           <span className="truncate flex items-center">
             <img
@@ -50,7 +54,11 @@ export const CountrySelector = React.forwardRef<
             />
             {props.selectedValue.title}
           </span>
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <span
+            className={`absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none ${
+              props.disableSelectButton == true ? "hidden" : ""
+            }`}
+          >
             <svg
               className="h-5 w-5 text-gray-400"
               xmlns="http://www.w3.org/2000/svg"
@@ -107,45 +115,45 @@ export const CountrySelector = React.forwardRef<
                 ) : (
                   COUNTRIES.filter(country => country.title.toLowerCase().startsWith(query.toLowerCase())).map(
                     (value, index) => {
-                      return (
-                        <li
-                          key={`${props.id}-${index}`}
-                          className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 transition"
-                          id="listbox-option-0"
-                          role="option"
-                          onClick={() => {
-                            props.onChange(value.value);
-                            setQuery('');
-                            props.onToggle();
-                          }}
-                        >
-                          <img
-                            alt={`${value.value}`}
-                            src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
-                            className={'inline mr-2 h-4 rounded-sm'}
-                          />
+                    return (
+                      <li
+                        key={`${props.id}-${index}`}
+                        className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 transition"
+                        id="listbox-option-0"
+                        role="option"
+                        onClick={() => {
+                          props.onChange(value.value);
+                          setQuery('');
+                          props.onToggle();
+                        }}
+                      >
+                        <img
+                          alt={`${value.value}`}
+                          src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
+                          className={'inline mr-2 h-4 rounded-sm'}
+                        />
 
-                          <span className="font-normal truncate">{value.title}</span>
-                          {value.value === props.selectedValue.value ? (
-                            <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
-                              <svg
-                                className="h-5 w-5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </span>
-                          ) : null}
-                        </li>
-                      );
-                    }
+                        <span className="font-normal truncate">{value.title}</span>
+                        {value.value === props.selectedValue.value ? (
+                          <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
+                            <svg
+                              className="h-5 w-5"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        ) : null}
+                      </li>
+                    );
+                  }
                   )
                 )}
               </div>
