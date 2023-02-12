@@ -1,4 +1,9 @@
-# react-country-selector
+# React Country Selector
+
+![Framer Motion Animated Counter](https://img.shields.io/github/stars/driaug/react-country-selector?style=social)
+![Framer Motion Animated Counter](https://img.shields.io/github/forks/driaug/react-country-selector?style=social)
+![Framer Motion Animated Counter](https://img.shields.io/github/sponsors/driaug?style=social)
+
 ![An image of the selector](https://i.postimg.cc/x8JyysGx/image.png)
 
 ## Requirements
@@ -7,15 +12,9 @@ This project makes use of a few dependencies!
 - [Tailwind-scrollbar](https://www.npmjs.com/package/tailwind-scrollbar)
 - [Framer Motion](https://www.framer.com/motion/)
 
-## Using it
-After you have placed the component, types and list of countries in their desired location (and fixed the imports 😉).
-You will need to pass down a few props!
-### Forwardref
-As you can see, this component makes use of a forwardref, we use this to close the element when someone clicks outside of the selector.
-Create a new ref for your selector like this 
-```ts
-const myRef = React.createRef<HTMLDivElement>();
-```
+## Usage
+After installing the dependencies. Copy the selector, countries and types to your own project
+
 ### State variables
 You will need two state variables
 - One to store if the selector is open or not
@@ -36,7 +35,6 @@ const myPage = () => {
   return (
     <CountrySelector
       id={'countries'}
-      ref={myRef}
       open={isOpen}
       onToggle={() => setIsOpen(!isOpen)}
       onChange={val => setCountry(val)}

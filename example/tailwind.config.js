@@ -1,11 +1,10 @@
 module.exports = {
-  purge: ['./src/pages/**/*.{ts,tsx}', './src/components/**/*.{ts,tsx}'],
-  darkMode: false,
+  purge: ["./src/pages/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
   theme: {
     extend: {},
   },
-  variants: {
-    scrollbar: ['rounded'],
-  },
-  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
-}
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("tailwind-scrollbar")({ noCompatible: true }),
+  ],
+};

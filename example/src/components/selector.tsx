@@ -1,35 +1,46 @@
-import {COUNTRIES} from '../lib/countries';
-import {SelectMenuOption} from '../lib/types';
-import {AnimatePresence, motion} from 'framer-motion';
-import React, {MutableRefObject, useEffect, useState} from 'react';
+import { COUNTRIES } from "../lib/countries";
+import { SelectMenuOption } from "../lib/types";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 
-export const CountrySelector = React.forwardRef<
-  HTMLDivElement,
-  {
-    id: string;
-    open: boolean;
-    onToggle: () => void;
-    onChange: (value: SelectMenuOption['value']) => void;
-    selectedValue: SelectMenuOption;
-  }
->((props, ref) => {
+export interface CountrySelectorProps {
+  id: string;
+  open: boolean;
+  onToggle: () => void;
+  onChange: (value: SelectMenuOption["value"]) => void;
+  selectedValue: SelectMenuOption;
+}
+
+export default function CountrySelector({
+  id,
+  open,
+  onToggle,
+  onChange,
+  selectedValue,
+}: CountrySelectorProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const mutableRef = ref as MutableRefObject<HTMLDivElement | null>;
 
     const handleClickOutside = (event) => {
-      if (mutableRef.current && !mutableRef.current.contains(event.target) && props.open) {
-        props.onToggle();
-        setQuery('');
+      if (
+        mutableRef.current &&
+        !mutableRef.current.contains(event.target) &&
+        open
+      ) {
+        onToggle();
+        setQuery("");
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   return (
     <div ref={ref}>
@@ -40,15 +51,15 @@ export const CountrySelector = React.forwardRef<
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
-          onClick={props.onToggle}
+          onClick={onToggle}
         >
           <span className="truncate flex items-center">
             <img
-              alt={`${props.selectedValue.value}`}
-              src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${props.selectedValue.value}.svg`}
-              className={'inline mr-2 h-4 rounded-sm'}
+              alt={`${selectedValue.value}`}
+              src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${selectedValue.value}.svg`}
+              className={"inline mr-2 h-4 rounded-sm"}
             />
-            {props.selectedValue.title}
+            {selectedValue.title}
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <svg
@@ -68,12 +79,12 @@ export const CountrySelector = React.forwardRef<
         </button>
 
         <AnimatePresence>
-          {props.open && (
+          {open && (
             <motion.ul
-              initial={{opacity: 0}}
-              animate={{opacity: 1}}
-              exit={{opacity: 0}}
-              transition={{duration: 0.1}}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
               className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-80 rounded-md text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
               tabIndex={-1}
               role="listbox"
@@ -85,10 +96,10 @@ export const CountrySelector = React.forwardRef<
                   <input
                     type="search"
                     name="search"
-                    autoComplete={'off'}
+                    autoComplete={"off"}
                     className="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                    placeholder={'Search a country'}
-                    onChange={e => setQuery(e.target.value)}
+                    placeholder={"Search a country"}
+                    onChange={(e) => setQuery(e.target.value)}
                   />
                 </li>
                 <hr />
@@ -96,57 +107,60 @@ export const CountrySelector = React.forwardRef<
 
               <div
                 className={
-                  'max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll'
+                  "max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll"
                 }
               >
-                {COUNTRIES.filter(country => country.title.toLowerCase().startsWith(query.toLowerCase())).length ===
-                0 ? (
+                {COUNTRIES.filter((country) =>
+                  country.title.toLowerCase().startsWith(query.toLowerCase())
+                ).length === 0 ? (
                   <li className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9">
                     No countries found
                   </li>
                 ) : (
-                  COUNTRIES.filter(country => country.title.toLowerCase().startsWith(query.toLowerCase())).map(
-                    (value, index) => {
-                      return (
-                        <li
-                          key={`${props.id}-${index}`}
-                          className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 transition"
-                          id="listbox-option-0"
-                          role="option"
-                          onClick={() => {
-                            props.onChange(value.value);
-                            setQuery('');
-                            props.onToggle();
-                          }}
-                        >
-                          <img
-                            alt={`${value.value}`}
-                            src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
-                            className={'inline mr-2 h-4 rounded-sm'}
-                          />
+                  COUNTRIES.filter((country) =>
+                    country.title.toLowerCase().startsWith(query.toLowerCase())
+                  ).map((value, index) => {
+                    return (
+                      <li
+                        key={`${id}-${index}`}
+                        className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 transition"
+                        id="listbox-option-0"
+                        role="option"
+                        onClick={() => {
+                          onChange(value.value);
+                          setQuery("");
+                          onToggle();
+                        }}
+                      >
+                        <img
+                          alt={`${value.value}`}
+                          src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
+                          className={"inline mr-2 h-4 rounded-sm"}
+                        />
 
-                          <span className="font-normal truncate">{value.title}</span>
-                          {value.value === props.selectedValue.value ? (
-                            <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
-                              <svg
-                                className="h-5 w-5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </span>
-                          ) : null}
-                        </li>
-                      );
-                    }
-                  )
+                        <span className="font-normal truncate">
+                          {value.title}
+                        </span>
+                        {value.value === selectedValue.value ? (
+                          <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-8">
+                            <svg
+                              className="h-5 w-5"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        ) : null}
+                      </li>
+                    );
+                  })
                 )}
               </div>
             </motion.ul>
@@ -155,4 +169,4 @@ export const CountrySelector = React.forwardRef<
       </div>
     </div>
   );
-});
+}
