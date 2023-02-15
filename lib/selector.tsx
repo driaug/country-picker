@@ -6,6 +6,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 export interface CountrySelectorProps {
   id: string;
   open: boolean;
+  disabled?: boolean;
   onToggle: () => void;
   onChange: (value: SelectMenuOption["value"]) => void;
   selectedValue: SelectMenuOption;
@@ -14,6 +15,7 @@ export interface CountrySelectorProps {
 export default function CountrySelector({
   id,
   open,
+  disabled = false,
   onToggle,
   onChange,
   selectedValue,
@@ -47,11 +49,14 @@ export default function CountrySelector({
       <div className="mt-1 relative">
         <button
           type="button"
-          className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          className={`${
+            disabled ? "bg-neutral-100" : "bg-white"
+          } relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
           onClick={onToggle}
+          disabled={disabled}
         >
           <span className="truncate flex items-center">
             <img
@@ -61,7 +66,11 @@ export default function CountrySelector({
             />
             {selectedValue.title}
           </span>
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <span
+            className={`absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none ${
+              disabled ? "hidden" : ""
+            }`}
+          >
             <svg
               className="h-5 w-5 text-gray-400"
               xmlns="http://www.w3.org/2000/svg"
