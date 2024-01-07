@@ -433,7 +433,7 @@ export const COUNTRIES = [
   },
   {
     title: "Liberia",
-    value: "LB",
+    value: "LR",
   },
   {
     title: "Libya",
