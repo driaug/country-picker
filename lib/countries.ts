@@ -44,6 +44,10 @@ export const COUNTRIES = [
     value: "AU",
   },
   {
+    title: "Austria",
+    value: "AT",
+  },
+  {
     title: "Azerbaijan",
     value: "AZ",
   },
